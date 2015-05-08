@@ -82,14 +82,14 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('ResuladosCtrl', function($scope, $state, $http, MyService) {
+.controller('ResuladosCtrl', function($scope, $state, $http, MyService, enviar) {
     $scope.factura = MyService.factura;
     $scope.ticket = MyService.ticket;
 
-    $scope.enviar = function(){
-        $http.get("http://keypanelservices.com/qr/qr.php", {i_ticket: $scope.ticket , i_factura: $scope.factura});
-            enviar.success(function(respuesta){
-            console.log(respuesta);
-        })
-    };
+    $scope.enviar = function() {      
+        $scope.enviar = enviar.get(
+                        {  i_ticket: MyService.ticket.text, 
+                           i_factura: MyService.factura.text
+                        });
+    }
 });
