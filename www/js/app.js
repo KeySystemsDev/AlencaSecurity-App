@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers','ngCordova'])
+angular.module('starter', ['ionic', 'starter.controllers','starter.services','ngCordova'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -47,25 +47,36 @@ angular.module('starter', ['ionic', 'starter.controllers','ngCordova'])
       }
     }
   })
-    .state('app.playlists', {
-      url: "/playlists",
-      views: {
-        'menuContent': {
-          templateUrl: "templates/playlists.html",
-          controller: 'PlaylistsCtrl'
-        }
-      }
-    })
-
-  .state('app.single', {
-    url: "/playlists/:playlistId",
+    
+  .state('app.consultaticket', {
+    url: "/consultaticket",
     views: {
       'menuContent': {
-        templateUrl: "templates/playlist.html",
-        controller: 'PlaylistCtrl'
+        templateUrl: "templates/consulta-ticket.html",
+        controller: 'ConsultaTicketCtrl'
+      }
+    }
+  })
+
+  .state('app.consultafactura', {
+    url: "/consultafactura",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/consulta-factura.html",
+        controller: 'ConsultaFacturaCtrl'
+      }
+    }
+  })
+
+  .state('app.resultado', {
+    url: "/resultado",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/resultado.html",
+        controller: 'ResuladosCtrl'
       }
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/app/consultaticket');
 });

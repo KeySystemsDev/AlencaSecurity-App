@@ -33,26 +33,63 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('PlaylistsCtrl', function($scope, $cordovaBarcodeScanner) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
+.controller('ConsultaTicketCtrl', function($scope, $state, $cordovaBarcodeScanner, MyService) {
 
-  $scope.scanBarcode = function() {
-        $cordovaBarcodeScanner.scan().then(function(imageData) {
-            alert(imageData.text);
-            console.log("Barcode Format -> " + imageData.format);
-            console.log("Cancelled -> " + imageData.cancelled);
+    $scope.scanBarcode = function() {
+        $cordovaBarcodeScanner.scan().then(function(result) {
+            
+           alert("We got a barcode\n" +
+                "Result: " + result.text + "\n" +
+                "Format: " + result.format + "\n" +
+                "Cancelled: " + result.cancelled);
+
+            if (result.cancelled == false){
+                $state.go('app.consultafactura');
+            } 
+
+            MyService.ticket = result;
+
+            console.log("Barcode Format -> " + result.format);
+            console.log("Cancelled -> " + result.cancelled);
         }, function(error) {
             console.log("An error happened -> " + error);
         });
     };
 })
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
+.controller('ConsultaFacturaCtrl', function($scope, $state, $cordovaBarcodeScanner, MyService) {
+    $scope.ticket = MyService.ticket;
+
+    $scope.scanBarcode = function() {
+        $cordovaBarcodeScanner.scan().then(function(result) {
+            
+           alert("We got a barcode\n" +
+                "Result: " + result.text + "\n" +
+                "Format: " + result.format + "\n" +
+                "Cancelled: " + result.cancelled);
+
+            if (result.cancelled == false){
+                $state.go('app.resultado');
+            } 
+
+            MyService.factura = result;
+
+            console.log("Barcode Format -> " + result.format);
+            console.log("Cancelled -> " + result.cancelled);
+        }, function(error) {
+            console.log("An error happened -> " + error);
+        });
+    };
+})
+
+.controller('ResuladosCtrl', function($scope, $state, $http, MyService) {
+    $scope.factura = MyService.factura;
+    $scope.ticket = MyService.ticket;
+
+    $scope.enviar = function(){
+        $http.get("http://keypanelservices.com/qr/qr.php", {i_ticket: $scope.ticket , i_factura: $scope.factura});
+            enviar.success(function(respuesta){
+            console.log(respuesta);
+        })
+    };
 });
