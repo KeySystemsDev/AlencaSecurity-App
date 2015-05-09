@@ -82,7 +82,7 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('ResuladosCtrl', function($scope, $state, $http, MyService, enviar) {
+.controller('ResuladosCtrl', function($scope, $state, $http, $ionicHistory, MyService, enviar) {
     $scope.factura = MyService.factura;
     $scope.ticket = MyService.ticket;
 
@@ -91,5 +91,9 @@ angular.module('starter.controllers', [])
                         {  i_ticket: MyService.ticket.text, 
                            i_factura: MyService.factura.text
                         });
+        $ionicHistory.nextViewOptions({
+            disableBack: true
+        });
+        $state.go('app.consultaticket');
     }
 });
