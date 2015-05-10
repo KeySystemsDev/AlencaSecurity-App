@@ -1,1 +1,206 @@
 /* Empty. Add your own CSS if you like */
+
+.center{
+  position: absolute;
+  left: 20%;
+  top: 20%;
+}
+
+.trans {
+  width: 0;
+  height: 0;
+  border-right: 175px solid transparent;
+  border-top: 175px solid transparent;
+  border-left: 175px solid transparent;
+  border-bottom: 175px solid transparent;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  position: absolute;
+  left: -25px;
+  top: -25px;
+  z-index: -1;
+  transition:All 0.4s ease;
+-webkit-transition:All 0.4s ease;
+-moz-transition:All 0.4s ease;
+-o-transition:All 0.4s ease;
+}
+
+.trans-size1{
+  border-right: 195px solid transparent;
+  border-top: 195px solid transparent;
+  border-left: 195px solid transparent;
+  border-bottom: 195px solid transparent;
+  left: -45px;
+  top: -45px;
+}
+
+.trans-size2{
+  border-right: 185px solid transparent;
+  border-top: 185px solid transparent;
+  border-left: 185px solid transparent;
+  border-bottom: 185px solid transparent;
+  top: -35px;
+  left: -35px;
+}
+
+
+.trans-size3{
+  border-right: 225px solid transparent;
+  border-top: 225px solid transparent;
+  border-left: 225px solid transparent;
+  border-bottom: 225px solid transparent;
+  top: -75px;
+  left:-75px;
+}
+
+
+.trans-size4{
+  border-right: 215px solid transparent;
+  border-top: 215px solid transparent;
+  border-left: 215px solid transparent;
+  border-bottom: 215px solid transparent;
+  top: -65px;
+  left:-65px;
+}
+
+.trans-size5{
+  border-right: 235px solid transparent;
+  border-top: 235px solid transparent;
+  border-left: 235px solid transparent;
+  border-bottom: 235px solid transparent;
+  top: -85px;
+  left:-85px;
+}
+
+.trans-size6{
+  border-right: 245px solid transparent;
+  border-top: 245px solid transparent;
+  border-left: 245px solid transparent;
+  border-bottom: 245px solid transparent;
+  top: -95px;
+  left:-95px;
+}
+
+.trans-size7{
+  border-right: 255px solid transparent;
+  border-top: 255px solid transparent;
+  border-left: 255px solid transparent;
+  border-bottom: 255px solid transparent;
+  top: -105px;
+  left:-105px;
+}
+
+.trans-size8{
+  border-right: 265px solid transparent;
+  border-top: 265px solid transparent;
+  border-left: 265px solid transparent;
+  border-bottom: 265px solid transparent;
+  top: -115px;
+  left:-115px;
+}
+
+.trans-size9{
+  border-right: 275px solid transparent;
+  border-top: 275px solid transparent;
+  border-left: 275px solid transparent;
+  border-bottom: 275px solid transparent;
+  top: -125px;
+  left:-125px;
+}
+
+.trans-size10{
+  border-right: 295px solid transparent;
+  border-top: 295px solid transparent;
+  border-left: 295px solid transparent;
+  border-bottom: 295px solid transparent;
+  top: -145px;
+  left:-145px;
+}
+
+
+.trans-full{
+  border-color: rgba(255, 255, 255, 0.05);
+}
+.trans-bottom-inverse{
+  border-bottom-color: transparent;
+  -webkit-animation: rotation-three-fourth 2s infinite linear;
+   -webkit-animation-direction:alternate;
+}
+.trans-left {
+  border-color: transparent;
+  border-left-color: rgba(255, 255, 255, 0.1);
+  -webkit-animation: rotation-half 2s linear infinite;
+  -webkit-animation-direction:alternate;
+}
+.trans-right {
+  border-color: transparent;
+  border-right-color: rgba(255, 255, 255, 0.2);
+  -webkit-animation: rotation-three-fourth 4s infinite linear;
+   -webkit-animation-direction:alternate;
+}
+.trans-top {
+  border-color: transparent;
+  border-top-color: rgba(255, 255, 255, 0.25);
+  -webkit-animation: rotation-half 3s infinite ;
+  -webkit-animation-direction:alternate;
+}
+.trans-bottom {
+  border-color: transparent;
+  border-bottom-color: rgba(255, 255, 255, 0.15);
+  -webkit-animation: rotation 4s infinite linear;
+}
+
+@-webkit-keyframes rotation {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(359deg);
+    }
+}
+@-webkit-keyframes rotation-half {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(90deg);
+    }
+}
+@-webkit-keyframes rotation-three-fourth {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(90deg);
+    }
+}
+
+
+.button-qr {
+    height:300px;
+    width:300px;
+    background: #003f75;
+    background: -moz-linear-gradient(top, #003f75 0%, #000000 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #003f75), color-stop(100%, #000000));
+    background: -webkit-linear-gradient(top, #003f75 0%, #000000 100%);
+    background: -o-linear-gradient(top, #003f75 0%, #000000 100%);
+    background: -ms-linear-gradient(top, #003f75 0%, #000000 100%);
+    background: linear-gradient(to bottom, #003f75 0%, #000000 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#003f75', endColorstr='#000000', GradientType=0);
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    border: solid 1px #000000;
+    -moz-box-shadow:inset 0px 2px 20px -5px rgba(0, 0, 0, 0.47), 1px 15px 30px -5px rgba(0, 0, 0, 0.68);
+    -webkit-box-shadow:inset 0px 2px 20px -5px rgba(0, 0, 0, 0.47), 1px 15px 30px -5px rgba(0, 0, 0, 0.68);
+    box-shadow:inset 0px 2px 20px -5px rgba(0, 0, 0, 0.47), 1px 15px 30px -5px rgba(0, 0, 0, 0.68);
+    text-align:center;
+    text-shadow: 4px 3px 0px #000000, 9px 8px 0px rgba(0, 0, 0, 0.15);
+}
+.button-qr > img {
+    margin-top: 45px;
+}
+
+.content-app{
+	background: #2889de;
+}
