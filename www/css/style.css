@@ -2,8 +2,8 @@
 
 .center{
   position: absolute;
-  left: 20%;
-  top: 20%;
+  left: 10%;
+  top: 150px;
 }
 
 .trans {
@@ -27,41 +27,41 @@
 }
 
 .trans-size1{
-  border-right: 195px solid transparent;
-  border-top: 195px solid transparent;
-  border-left: 195px solid transparent;
-  border-bottom: 195px solid transparent;
-  left: -45px;
+  border-right: 160px solid transparent;
+  border-top: 160px solid transparent;
+  border-left: 160px solid transparent;
+  border-bottom: 160px solid transparent;
   top: -45px;
+  left: -10px;
 }
 
 .trans-size2{
-  border-right: 185px solid transparent;
-  border-top: 185px solid transparent;
-  border-left: 185px solid transparent;
-  border-bottom: 185px solid transparent;
+  border-right: 150px solid transparent;
+  border-top: 150px solid transparent;
+  border-left: 150px solid transparent;
+  border-bottom: 150px solid transparent;
   top: -35px;
-  left: -35px;
+  left: -0px;
 }
 
 
 .trans-size3{
-  border-right: 225px solid transparent;
-  border-top: 225px solid transparent;
-  border-left: 225px solid transparent;
-  border-bottom: 225px solid transparent;
+  border-right: 185px solid transparent;
+  border-top: 185px solid transparent;
+  border-left: 185px solid transparent;
+  border-bottom: 185px solid transparent;
   top: -75px;
-  left:-75px;
+  left:-35px;
 }
 
 
 .trans-size4{
-  border-right: 215px solid transparent;
-  border-top: 215px solid transparent;
-  border-left: 215px solid transparent;
-  border-bottom: 215px solid transparent;
+  border-right: 180px solid transparent;
+  border-top: 180px solid transparent;
+  border-left: 180px solid transparent;
+  border-bottom: 180px solid transparent;
   top: -65px;
-  left:-65px;
+  left:-30px;
 }
 
 .trans-size5{
@@ -178,16 +178,16 @@
 
 
 .button-qr {
-    height:300px;
-    width:300px;
-    background: #003f75;
-    background: -moz-linear-gradient(top, #003f75 0%, #000000 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #003f75), color-stop(100%, #000000));
-    background: -webkit-linear-gradient(top, #003f75 0%, #000000 100%);
-    background: -o-linear-gradient(top, #003f75 0%, #000000 100%);
-    background: -ms-linear-gradient(top, #003f75 0%, #000000 100%);
-    background: linear-gradient(to bottom, #003f75 0%, #000000 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#003f75', endColorstr='#000000', GradientType=0);
+    height: 200px;
+    width: 200px;
+    background: #494949;
+    background: -moz-linear-gradient(top, #494949 0%, #000000 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #494949), color-stop(100%, #000000));
+    background: -webkit-linear-gradient(top, #494949 0%, #000000 100%);
+    background: -o-linear-gradient(top, #494949 0%, #000000 100%);
+    background: -ms-linear-gradient(top, #494949 0%, #000000 100%);
+    background: linear-gradient(to bottom, #494949 0%, #000000 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#494949', endColorstr='#000000', GradientType=0);
     -webkit-border-radius: 50%;
     border-radius: 50%;
     border: solid 1px #000000;
@@ -196,11 +196,26 @@
     box-shadow:inset 0px 2px 20px -5px rgba(0, 0, 0, 0.47), 1px 15px 30px -5px rgba(0, 0, 0, 0.68);
     text-align:center;
     text-shadow: 4px 3px 0px #000000, 9px 8px 0px rgba(0, 0, 0, 0.15);
+    top: 10px;
+    left: 40px;
+    position: absolute;
 }
 .button-qr > img {
     margin-top: 45px;
 }
 
 .content-app{
-	background: #2889de;
+	background: #C0C0C0;
+}
+
+.bar.bar-stable {
+    border-bottom: solid #000000;
+    border-color: #000000;
+    background-color: #f8f8f8;
+    background-image: linear-gradient(0deg, #b2b2b2, #b2b2b2 50%, transparent 50%);
+    color: #444;
+}
+
+.button-enviar{
+    text-align: center;
 }

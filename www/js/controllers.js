@@ -38,10 +38,9 @@ angular.module('starter.controllers', [])
     $scope.scanBarcode = function() {
         $cordovaBarcodeScanner.scan().then(function(result) {
             
-           alert("We got a barcode\n" +
-                "Result: " + result.text + "\n" +
-                "Format: " + result.format + "\n" +
-                "Cancelled: " + result.cancelled);
+           alert("Información Ticket\n" + "\n" +
+                "Resultado: " + result.text + "\n" + "\n" +
+                "Formato: " + result.format + "\n");
 
             if (result.cancelled == false){
                 $state.go('app.consultafactura');
@@ -63,10 +62,9 @@ angular.module('starter.controllers', [])
     $scope.scanBarcode = function() {
         $cordovaBarcodeScanner.scan().then(function(result) {
             
-           alert("We got a barcode\n" +
-                "Result: " + result.text + "\n" +
-                "Format: " + result.format + "\n" +
-                "Cancelled: " + result.cancelled);
+           alert("Información Factura\n" + "\n" +
+                "Resultado: " + result.text + "\n" + "\n" +
+                "Formato: " + result.format + "\n");
 
             if (result.cancelled == false){
                 $state.go('app.resultado');
@@ -91,6 +89,11 @@ angular.module('starter.controllers', [])
                         {  i_ticket: MyService.ticket.text, 
                            i_factura: MyService.factura.text
                         });
+
+        alert("Información Enviada: \n" + "\n" +
+              "Ticket: " + MyService.ticket.text + "\n" + "\n" +
+              "Factura: " + MyService.factura.text + "\n");
+
         $ionicHistory.nextViewOptions({
             disableBack: true
         });
