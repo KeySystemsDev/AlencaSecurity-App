@@ -1,36 +1,7 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
-  // Form data for the login modal
-  $scope.loginData = {};
+.controller('AppCtrl', function() {
 
-  // Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/login.html', {
-    scope: $scope
-  }).then(function(modal) {
-    $scope.modal = modal;
-  });
-
-  // Triggered in the login modal to close it
-  $scope.closeLogin = function() {
-    $scope.modal.hide();
-  };
-
-  // Open the login modal
-  $scope.login = function() {
-    $scope.modal.show();
-  };
-
-  // Perform the login action when the user submits the login form
-  $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
-
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-    $timeout(function() {
-      $scope.closeLogin();
-    }, 1000);
-  };
 })
 
 .controller('ConsultaTicketCtrl', function($scope, $state, $cordovaBarcodeScanner, MyService) {
@@ -38,13 +9,14 @@ angular.module('starter.controllers', [])
     $scope.scanBarcode = function() {
         $cordovaBarcodeScanner.scan().then(function(result) {
             
-           alert("Información Ticket\n" + "\n" +
-                "Resultado: " + result.text + "\n" + "\n" +
-                "Formato: " + result.format + "\n");
-
             if (result.cancelled == false){
                 $state.go('app.consultafactura');
-            } 
+            }
+
+            if (result.cancelled == true){
+                alert("Rultado de la consulta\n" + "\n" +
+                      "Cancel" + result.cancelled);
+            }
 
             MyService.ticket = result;
 
@@ -61,14 +33,15 @@ angular.module('starter.controllers', [])
 
     $scope.scanBarcode = function() {
         $cordovaBarcodeScanner.scan().then(function(result) {
-            
-           alert("Información Factura\n" + "\n" +
-                "Resultado: " + result.text + "\n" + "\n" +
-                "Formato: " + result.format + "\n");
-
+        
             if (result.cancelled == false){
                 $state.go('app.resultado');
-            } 
+            }
+
+            if (result.cancelled == true){
+                alert("Rultado de la consulta\n" + "\n" +
+                      "Cancel" + result.cancelled);
+            }
 
             MyService.factura = result;
 
@@ -91,8 +64,8 @@ angular.module('starter.controllers', [])
                         });
 
         alert("Información Enviada: \n" + "\n" +
-              "Ticket: " + MyService.ticket.text + "\n" + "\n" +
-              "Factura: " + MyService.factura.text + "\n");
+              "Número Ticket: " + MyService.ticket.text + "\n" + "\n" +
+              "Número Factura: " + MyService.factura.text + "\n");
 
         $ionicHistory.nextViewOptions({
             disableBack: true
