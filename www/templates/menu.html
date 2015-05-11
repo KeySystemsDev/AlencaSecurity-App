@@ -13,23 +13,28 @@
   </ion-side-menu-content>
 
   <ion-side-menu side="left">
-    <ion-header-bar class="bar-stable">
-      <h1 class="title">Left</h1>
-    </ion-header-bar>
     <ion-content>
-      <ion-list>
-        <ion-item nav-clear menu-close ng-click="login()">
-          Login
-        </ion-item>
-        <ion-item nav-clear menu-close href="#/app/search">
-          Search
-        </ion-item>
-        <ion-item nav-clear menu-close href="#/app/browse">
-          Browse
-        </ion-item>
-        <ion-item nav-clear menu-close href="#/app/playlists">
-          Playlists
-        </ion-item>
+        <div class="bar-side-menu">
+            <img class="icon-side-menu" src="img/icon.png">
+        </div>
+        <ion-list>
+            <ion-item nav-clear menu-close href="#/app/consultaticket">
+                <i class="icon ion-qr-scanner icon-side-menu"></i>
+                Alenca Security
+            </ion-item>
+            <ion-item nav-clear menu-close href="#/app/search">
+                <i class="icon ion-alert icon-side-menu"></i>
+                Acerca
+            </ion-item>
+            <ion-item nav-clear menu-close href="#/app/browse">
+                <i class="icon ion-help-buoy icon-side-menu"></i>
+                Ayuda
+            </ion-item>
+            <div class="top-header"></div>
+            <a class="item item-key-systems" href="#" browse-to="https://play.google.com/store/apps/details?id=com.ionicframework.keysystems549574">
+                por
+            <img class="icon-key-side-menu" src="img/keysystems-logo.png">
+        </a>
       </ion-list>
     </ion-content>
   </ion-side-menu>

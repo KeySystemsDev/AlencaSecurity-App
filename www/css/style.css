@@ -219,3 +219,74 @@
 .button-enviar{
     text-align: center;
 }
+
+.item-key-systems-border{
+    border-bottom: solid #3b4f6d;
+    border-width: 5px;
+}
+
+.item-key-systems{
+    padding: 18px;
+}
+.icon-key-side-menu{
+    top:5px;
+    margin-left: 15px;
+    width: 150px;
+    position: absolute;
+}
+
+/* top bar */
+.top-header{ 
+    height:6px;
+    background-image: -webkit-linear-gradient(left,
+        #d9534f 20%, 
+        #6f5499 20%, 
+        #6f5499 40%, 
+        #428bca 40%, 
+        #428bca 60%,
+        #f0ad4e 60%, 
+        #f0ad4e 80%, 
+        #5cb85c 80%);
+  background-image: -moz-linear-gradient(left,
+        #d9534f 20%, 
+        #6f5499 20%,
+        #6f5499 40%, 
+        #428bca 40%, 
+        #428bca 60%, 
+        #f0ad4e 60%, 
+        #f0ad4e 80%, 
+        #5cb85c 80%);
+    background-image: -ms-linear-gradient(left,
+        #d9534f 20%, 
+        #6f5499 20%, 
+        #6f5499 40%, 
+        #428bca 40%, 
+        #428bca 60%, 
+        #f0ad4e 60%, 
+        #f0ad4e 80%, 
+        #5cb85c 80%);
+    background-image: linear-gradient(left,
+        #d9534f 20%, 
+        #6f5499 20%, 
+        #6f5499 40%, 
+        #428bca 40%, 
+        #428bca 60%, 
+        #f0ad4e 60%,
+        #f0ad4e 80%, 
+        #5cb85c 80%);
+    background-size:100% 6px;
+    background-position: 50% 100%;
+    background-repeat: no-repeat;
+}
+.bar-side-menu{
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    margin-top: 0px;
+    background: #f8f8f8;
+    border-bottom: solid #000000;
+}
+.icon-side-menu{
+    width: 110px;
+    height: 110px;
+}
