@@ -30,20 +30,20 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services','ng
     controller: 'AppCtrl'
   })
 
-  .state('app.search', {
-    url: "/search",
+  .state('app.acerca', {
+    url: "/acerca",
     views: {
       'menuContent': {
-        templateUrl: "templates/search.html"
+        templateUrl: "templates/acerca.html"
       }
     }
   })
 
-  .state('app.browse', {
-    url: "/browse",
+  .state('app.ayuda', {
+    url: "/ayuda",
     views: {
       'menuContent': {
-        templateUrl: "templates/browse.html"
+        templateUrl: "templates/ayuda.html"
       }
     }
   })
@@ -79,4 +79,21 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services','ng
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/consultaticket');
+})
+
+.directive('browseTo', function ($ionicGesture) {
+ return {
+  restrict: 'A',
+  link: function ($scope, $element, $attrs) {
+   var handleTap = function (e) {
+    // todo: capture Google Analytics here
+    var inAppBrowser = window.open(encodeURI($attrs.browseTo), '_system');
+   };
+   var tapGesture = $ionicGesture.on('tap', handleTap, $element);
+   $scope.$on('$destroy', function () {
+    // Clean up - unbind drag gesture handler
+    $ionicGesture.off(tapGesture, 'tap', handleTap);
+   });
+  }
+ }
 });
