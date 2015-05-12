@@ -53,7 +53,7 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('ResuladosCtrl', function($scope, $state, $http, $ionicHistory, MyService, Enviar, Ticket, Factura) {
+.controller('ResuladosCtrl', function($scope, $state, $http, $ionicHistory, MyService, Asociar, Ticket, Factura) {
     $scope.factura = MyService.factura;
     $scope.ticket = MyService.ticket;
 
@@ -61,10 +61,10 @@ angular.module('starter.controllers', [])
 
     $scope.factura_consulta = Factura.get({codigo: MyService.factura.text});
 
-    $scope.enviar = function() {      
-        $scope.enviar = Enviar.get(
-                        {  i_ticket: MyService.ticket.text, 
-                           i_factura: MyService.factura.text
+    $scope.asociar = function() {      
+        $scope.asociar = Asociar.get(
+                        {  factura: MyService.factura.text,
+                           ticket: MyService.ticket.text
                         });
 
         alert("Información Enviada: \n" + "\n" +
