@@ -14,8 +14,8 @@ angular.module('starter.controllers', [])
             }
 
             if (result.cancelled == true){
-                alert("Rultado de la consulta\n" + "\n" +
-                      "Cancel" + result.cancelled);
+                alert("Consulta Cancelada\n" + "\n" +
+                      "Status Cancel: " + result.cancelled);
             }
 
             MyService.ticket = result;
@@ -39,8 +39,8 @@ angular.module('starter.controllers', [])
             }
 
             if (result.cancelled == true){
-                alert("Rultado de la consulta\n" + "\n" +
-                      "Cancel" + result.cancelled);
+                alert("Consulta Cancelada\n" + "\n" +
+                      "Status Cancel: " + result.cancelled);
             }
 
             MyService.factura = result;
@@ -53,12 +53,16 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('ResuladosCtrl', function($scope, $state, $http, $ionicHistory, MyService, enviar) {
+.controller('ResuladosCtrl', function($scope, $state, $http, $ionicHistory, MyService, Enviar, Ticket, Factura) {
     $scope.factura = MyService.factura;
     $scope.ticket = MyService.ticket;
 
+    $scope.ticket_consulta = Ticket.get({codigo: MyService.ticket.text});
+
+    $scope.factura_consulta = Factura.get({codigo: MyService.factura.text});
+
     $scope.enviar = function() {      
-        $scope.enviar = enviar.get(
+        $scope.enviar = Enviar.get(
                         {  i_ticket: MyService.ticket.text, 
                            i_factura: MyService.factura.text
                         });
