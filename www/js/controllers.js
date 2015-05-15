@@ -80,12 +80,33 @@ angular.module('starter.controllers', [])
 
 .controller('ConsultaManualCtrl', function($scope, $state, Ticket , Factura, MyService) {
     
+    $scope.formData = {};
+
     $scope.siguiente = function(formData) {
 
         MyService.ticket_consulta_manual = Ticket.get({codigo: formData.number_ticket});
-        MyService.factura_consulta_manual = Factura.get({codigo: formData.number_factura});
+        MyService.factura_consulta_manual = Factura.get({codigo: formData.number_factura});        
 
-        $state.go('app.resultadomanual');
+        Ticket.get({codigo: formData.number_ticket}).$promise.then(function(data) {
+            
+            Factura.get({codigo: formData.number_factura}).$promise.then(function(data) {
+                
+                $state.go('app.resultadomanual');
+
+                $scope.formData = {};
+            
+            },  function(error) {
+                    // error hand
+                    console.log(error);
+                    alert("Existe un Error en la Factura");
+                 });
+    
+        }, function(error) {
+            // error hand
+            console.log(error);
+            alert("Existe un Error en la Ticket");
+        });
+
     }
 })
 
@@ -106,9 +127,6 @@ angular.module('starter.controllers', [])
         $ionicHistory.nextViewOptions({
             disableBack: true
         });
-
-        angular.element('#id_ticket').val('');
-        angular.element('#id_factura').val('');
 
         $state.go('app.consultaticket');
     }
