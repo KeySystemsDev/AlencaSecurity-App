@@ -1,0 +1,35 @@
+<ion-view view-title="Resultado Manual">
+  <ion-content>
+
+    <div class="card">
+        
+        <div class="item item-divider">
+            Ticket
+        </div>
+        
+        <div class="item item-text-wrap">
+            Array: {{ticket_consulta[0].Codigo}}
+        </div>
+  
+    </div>
+
+    <div class="card">
+        
+        <div class="item item-divider">
+            Factura
+        </div>
+
+        <div class="item item-text-wrap">
+            Array: {{factura_consulta[0].Ticket}}
+        </div>
+  
+    </div>
+    
+    <div class="button-enviar">
+    	<button class="button button-assertive" ng-click="asociar(factura_consulta[0].Ticket, ticket_consulta[0].Codigo)">
+    		Asociar
+    	</button>
+    </div>
+
+  </ion-content>
+</ion-view>

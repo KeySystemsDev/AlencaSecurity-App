@@ -1,0 +1,37 @@
+<ion-view view-title="Código Manual">
+  	<ion-content>
+    	
+        <form name="formulario" id="formulario">
+    		<div class="list list-inset center-text">
+      			<label class="item item-divider">
+        			Ingrese los Datos de Forma Manueal
+      			</label>
+    		</div>
+
+        	<div class="list list-inset">
+      			<label class="item ion-pricetags item-divider">
+        			Ticket
+      			</label>
+      			<label class="item item-input">
+        			<input type="text" placeholder="Número de Ticket" id="id_ticket" name="number_ticket" ng-model="formData.number_ticket" numbers-only="numbers-only" required>
+      			</label>
+    		</div>
+
+    		<div class="list list-inset">
+    			<label class="item ion-pricetag item-divider">
+        			Factura
+      			</label>
+      			<label class="item item-input">
+        			<input type="text" placeholder="Número de Factura" id="id_factura" name="number_factura" ng-model="formData.number_factura" numbers-only="numbers-only" required>
+      			</label>
+    		</div>
+
+            <div class="button-enviar">
+              <button class="button button-positive" type="submit" value="Siguiente" ng-disabled="formulario.$invalid" ng-click="siguiente(formData)">
+                Siguiente
+              </button>
+            </div>
+        </form>
+      
+  	</ion-content>
+</ion-view>

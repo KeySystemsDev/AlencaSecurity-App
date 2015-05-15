@@ -290,3 +290,6 @@
     width: 110px;
     height: 110px;
 }
+.center-text{
+  text-align: center;
+}

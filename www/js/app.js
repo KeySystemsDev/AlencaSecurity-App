@@ -47,6 +47,16 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services','ng
       }
     }
   })
+
+  .state('app.consultamanual', {
+    url: "/consulta-manual",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/consulta-manual.html",
+        controller: 'ConsultaManualCtrl'
+      }
+    }
+  })
     
   .state('app.consultaticket', {
     url: "/consultaticket",
@@ -76,6 +86,16 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services','ng
         controller: 'ResuladosCtrl'
       }
     }
+  })
+
+  .state('app.resultadomanual', {
+    url: "/resultado-manual",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/resultado-manual.html",
+        controller: 'ResuladosManualCtrl'
+      }
+    }
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/consultaticket');
@@ -96,4 +116,25 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services','ng
    });
   }
  }
+})
+
+.directive('numbersOnly', function(){
+   return {
+     require: 'ngModel',
+     link: function(scope, element, attrs, modelCtrl) {
+       modelCtrl.$parsers.push(function (inputValue) {
+           // this next if is necessary for when using ng-required on your input. 
+           // In such cases, when a letter is typed first, this parser will be called
+           // again, and the 2nd time, the value will be undefined
+           if (inputValue == undefined) return '' 
+           var transformedInput = inputValue.replace(/[^0-9]/g, ''); 
+           if (transformedInput!=inputValue) {
+              modelCtrl.$setViewValue(transformedInput);
+              modelCtrl.$render();
+           }         
+
+           return transformedInput;         
+       });
+     }
+   };
 });
