@@ -104,7 +104,7 @@ angular.module('starter.controllers', [])
         }, function(error) {
             // error hand
             console.log(error);
-            alert("Existe un Error en la Ticket");
+            alert("Existe un Error en el Ticket");
         });
 
     }

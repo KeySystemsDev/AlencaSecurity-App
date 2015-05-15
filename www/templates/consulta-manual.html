@@ -4,7 +4,7 @@
         <form name="formulario" id="formulario">
     		<div class="list list-inset center-text">
       			<label class="item item-divider">
-        			Ingrese los Datos de Forma Manueal
+        			Ingrese los Datos de Forma Manual
       			</label>
     		</div>
 
@@ -13,7 +13,7 @@
         			Ticket
       			</label>
       			<label class="item item-input">
-        			<input type="text" placeholder="Número de Ticket" id="id_ticket" name="number_ticket" ng-model="formData.number_ticket" numbers-only="numbers-only" required>
+        			<input type="number" placeholder="Número de Ticket" id="id_ticket" name="number_ticket" ng-model="formData.number_ticket" pattern="[0-9]*" required>
       			</label>
     		</div>
 
@@ -22,7 +22,7 @@
         			Factura
       			</label>
       			<label class="item item-input">
-        			<input type="text" placeholder="Número de Factura" id="id_factura" name="number_factura" ng-model="formData.number_factura" numbers-only="numbers-only" required>
+        			<input type="number" placeholder="Número de Factura" id="id_factura" name="number_factura" ng-model="formData.number_factura" pattern="[0-9]*" required>
       			</label>
     		</div>
 
