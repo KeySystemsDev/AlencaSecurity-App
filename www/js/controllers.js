@@ -78,7 +78,7 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller('ConsultaManualCtrl', function($scope, $state, Ticket , Factura, MyService) {
+.controller('ConsultaManualCtrl', function($scope, $state, $ionicPopup, Ticket , Factura, MyService) {
     
     $scope.formData = {};
 
@@ -98,13 +98,15 @@ angular.module('starter.controllers', [])
             },  function(error) {
                     // error hand
                     console.log(error);
-                    alert("Existe un Error en la Factura");
+                    $ionicPopup.alert({ title:    'Mensaje de Error',
+                                        template: 'Existe un Error en la Factura porfavor verifique el Número.'});
                  });
     
         }, function(error) {
             // error hand
             console.log(error);
-            alert("Existe un Error en el Ticket");
+            $ionicPopup.alert({ title:    'Mensaje de Error',
+                                template: 'Existe un Error en el Ticket porfavor verifique el Número.'});
         });
 
     }
