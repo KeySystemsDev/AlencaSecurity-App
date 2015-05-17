@@ -78,7 +78,7 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller('ConsultaManualTicketCtrl', function($scope, $state, $ionicPopup, Ticket , Factura, MyService) {
+.controller('ConsultaManualTicketCtrl', function($scope, $state, $ionicPopup, Ticket, MyService) {
     
     $scope.formData = {};
 
@@ -102,35 +102,27 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller('ConsultaManualFacturaCtrl', function($scope, $state, $ionicPopup, Ticket , Factura, MyService) {
+.controller('ConsultaManualFacturaCtrl', function($scope, $state, $ionicPopup, Factura, MyService) {
     
     $scope.formData = {};
 
+    console.log(MyService.ticket_consulta_manual);
+
     $scope.siguiente = function(formData) {
 
-        MyService.ticket_consulta_manual = Ticket.get({codigo: formData.number_ticket});
         MyService.factura_consulta_manual = Factura.get({codigo: formData.number_factura});        
 
-        Ticket.get({codigo: formData.number_ticket}).$promise.then(function(data) {
+        Factura.get({codigo: formData.number_factura}).$promise.then(function(data) {
             
-            Factura.get({codigo: formData.number_factura}).$promise.then(function(data) {
-                
-                $state.go('app.resultadomanual');
+            $state.go('app.resultadomanual');
 
-                $scope.formData = {};
+            $scope.formData = {};
             
-            },  function(error) {
-                    // error hand
-                    console.log(error);
-                    $ionicPopup.alert({ title:    'Mensaje de Error',
-                                        template: 'Existe un Error en la Factura porfavor verifique el Número.'});
-                 });
-    
         }, function(error) {
             // error hand
             console.log(error);
             $ionicPopup.alert({ title:    'Mensaje de Error',
-                                template: 'Existe un Error en el Ticket porfavor verifique el Número.'});
+                                template: 'Existe un Error en la Factura porfavor verifique el Número.'});
         });
 
     }
