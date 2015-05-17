@@ -1,13 +1,15 @@
 /* Empty. Add your own CSS if you like */
 
-.center{
-  position: absolute;
+.button-ticket{
+  position: relative;
   left: 10%;
-  top: 170px;
+  top: 100px;
 }
 
 .button-factura{
-  top:280px;
+  position: relative;
+  left: 10%;
+  top: 100px;
 }
 
 .trans {

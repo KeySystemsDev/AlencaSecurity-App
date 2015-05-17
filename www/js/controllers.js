@@ -38,7 +38,7 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('ConsultaFacturaCtrl', function($scope, $state, $cordovaBarcodeScanner, $ionicModal, Ticket, Factura, MyService) {
+.controller('ConsultaFacturaCtrl', function($scope, $state, $cordovaBarcodeScanner, $ionicPopup, $ionicModal, Ticket, Factura, MyService) {
     
     $scope.ticket = Ticket.get({codigo: MyService.ticket.text});
 
