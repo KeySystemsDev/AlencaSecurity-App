@@ -144,11 +144,27 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller('ResuladosManualCtrl', function($scope, $state, $ionicPopup, $ionicHistory, MyService, Asociar) {
+.controller('ResuladosManualCtrl', function($scope, $state, $ionicPopup, $ionicHistory, $ionicModal, MyService, Asociar) {
     
-    $scope.ticket_consulta = MyService.ticket_consulta_manual;
+    $scope.ticket_consulta_manual = MyService.ticket_consulta_manual;
 
-    $scope.factura_consulta = MyService.factura_consulta_manual;
+    $scope.factura_consulta_manual = MyService.factura_consulta_manual;
+
+    $ionicModal.fromTemplateUrl('templates/modal-img.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+        }).then(function(modal) {
+            $scope.modal = modal;
+            $scope.modalDragStart = { active: true, value: 0 }
+    })
+
+    $scope.openModal = function() {
+        $scope.modal.show()
+    }
+
+    $scope.closeModal = function() {
+        return $scope.modal.hide();
+    };
 
     $scope.asociar = function( consulta_factura , consulta_ticket) {      
 

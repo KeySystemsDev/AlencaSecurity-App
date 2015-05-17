@@ -3,32 +3,30 @@
 
     <div class="card">
         
-        <div class="item item-divider">
+        <div class="item item-divider ion-pricetag">
             Ticket
         </div>
         
-        <div class="item item-text-wrap">
-            Array: {{ticket_consulta[0].Codigo}}
+        <div class="item item-text-wrap ion-pound">
+            Número de Ticket: {{ticket_consulta_manual[0].Codigo}}
         </div>
 
-        <div class="item item-text-wrap">
-            Array: {{ticket_consulta}}
-        </div>
+        <label class="item" ng-click="openModal()">
+            <div class="code-img-ticket">
+                <img ng-src="{{ ticket_consulta_manual[0].Foto }}">
+            </div>
+        </label>
   
     </div>
 
     <div class="card">
         
-        <div class="item item-divider">
+        <div class="item item-divider ion-pricetag">
             Factura
         </div>
 
-        <div class="item item-text-wrap">
-            Array: {{factura_consulta[0].Ticket}}
-        </div>
-
-        <div class="item item-text-wrap">
-            Array: {{factura_consulta}}
+        <div class="item item-text-wrap ion-pound">
+            Número de Factura: {{factura_consulta_manual[0].Ticket}}
         </div>
   
     </div>
