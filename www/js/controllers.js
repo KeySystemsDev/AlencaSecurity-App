@@ -4,13 +4,23 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('ConsultaTicketCtrl', function($scope, $state, $cordovaBarcodeScanner, MyService) {
+.controller('ConsultaTicketCtrl', function($scope, $state, $cordovaBarcodeScanner,$ionicPopup, Ticket, MyService) {
 
     $scope.scanBarcode = function() {
         $cordovaBarcodeScanner.scan().then(function(result) {
             
             if (result.cancelled == false){
-                $state.go('app.consultafactura');
+                
+                Ticket.get({codigo: result.text}).$promise.then(function(data) {
+            
+                    $state.go('app.consultafactura');
+
+                }, function(error) {
+                    // error hand
+                    console.log(error);
+                    $ionicPopup.alert({ title:    'Mensaje de Error',
+                                        template: 'Existe un Error en el Ticket porfavor verifique el Número.'});
+                });
             }
 
             if (result.cancelled == true){
