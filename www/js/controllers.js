@@ -78,7 +78,31 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller('ConsultaManualCtrl', function($scope, $state, $ionicPopup, Ticket , Factura, MyService) {
+.controller('ConsultaManualTicketCtrl', function($scope, $state, $ionicPopup, Ticket , Factura, MyService) {
+    
+    $scope.formData = {};
+
+    $scope.siguiente = function(formData) {
+
+        MyService.ticket_consulta_manual = Ticket.get({codigo: formData.number_ticket});      
+
+        Ticket.get({codigo: formData.number_ticket}).$promise.then(function(data) {
+            
+            $state.go('app.consultamanualfactura');
+
+            $scope.formData = {};
+    
+        }, function(error) {
+            // error hand
+            console.log(error);
+            $ionicPopup.alert({ title:    'Mensaje de Error',
+                                template: 'Existe un Error en el Ticket porfavor verifique el Número.'});
+        });
+
+    }
+})
+
+.controller('ConsultaManualFacturaCtrl', function($scope, $state, $ionicPopup, Ticket , Factura, MyService) {
     
     $scope.formData = {};
 

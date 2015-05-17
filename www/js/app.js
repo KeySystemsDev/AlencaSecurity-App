@@ -48,12 +48,22 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services','ng
     }
   })
 
-  .state('app.consultamanual', {
-    url: "/consulta-manual",
+  .state('app.consultamanualticket', {
+    url: "/consulta-manual-ticket",
     views: {
       'menuContent': {
-        templateUrl: "templates/consulta-manual.html",
-        controller: 'ConsultaManualCtrl'
+        templateUrl: "templates/consulta-manual-ticket.html",
+        controller: 'ConsultaManualTicketCtrl'
+      }
+    }
+  })
+
+  .state('app.consultamanualfactura', {
+    url: "/consulta-manual-factura",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/consulta-manual-factura.html",
+        controller: 'ConsultaManualFacturaCtrl'
       }
     }
   })
