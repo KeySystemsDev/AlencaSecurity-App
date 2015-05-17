@@ -38,14 +38,42 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('ConsultaFacturaCtrl', function($scope, $state, $cordovaBarcodeScanner, MyService) {
-    $scope.ticket = MyService.ticket;
+.controller('ConsultaFacturaCtrl', function($scope, $state, $cordovaBarcodeScanner, $ionicModal, Ticket, Factura, MyService) {
+    
+    $scope.ticket = Ticket.get({codigo: MyService.ticket.text});
+
+    $ionicModal.fromTemplateUrl('templates/modal-img.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+        }).then(function(modal) {
+            $scope.modal = modal;
+            $scope.modalDragStart = { active: true, value: 0 }
+    })
+
+    $scope.openModal = function() {
+        $scope.modal.show()
+    }
+
+    $scope.closeModal = function() {
+        return $scope.modal.hide();
+    };
 
     $scope.scanBarcode = function() {
+        
         $cordovaBarcodeScanner.scan().then(function(result) {
         
             if (result.cancelled == false){
-                $state.go('app.resultado');
+                
+                Factura.get({codigo: result.text}).$promise.then(function(data) {
+
+                    $state.go('app.resultado');
+                    
+                }, function(error) {
+                    // error hand
+                    console.log(error);
+                    $ionicPopup.alert({ title:    'Mensaje de Error',
+                                        template: 'Existe un Error en la Factura porfavor verifique el Número.'});
+                });
             }
 
             if (result.cancelled == true){
@@ -101,6 +129,7 @@ angular.module('starter.controllers', [])
             $state.go('app.consultamanualfactura');
 
             $scope.formData = {};
+            console.log(data);
     
         }, function(error) {
             // error hand
@@ -118,7 +147,7 @@ angular.module('starter.controllers', [])
 
     $scope.ticket_consulta_manual = MyService.ticket_consulta_manual;
 
-    $ionicModal.fromTemplateUrl('templates/modal-img.html', {
+    $ionicModal.fromTemplateUrl('templates/modal-img-manual.html', {
         scope: $scope,
         animation: 'slide-in-up'
         }).then(function(modal) {
@@ -160,7 +189,7 @@ angular.module('starter.controllers', [])
 
     $scope.factura_consulta_manual = MyService.factura_consulta_manual;
 
-    $ionicModal.fromTemplateUrl('templates/modal-img.html', {
+    $ionicModal.fromTemplateUrl('templates/modal-img-manual.html', {
         scope: $scope,
         animation: 'slide-in-up'
         }).then(function(modal) {
