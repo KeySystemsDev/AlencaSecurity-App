@@ -102,11 +102,28 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller('ConsultaManualFacturaCtrl', function($scope, $state, $ionicPopup, Factura, MyService) {
+.controller('ConsultaManualFacturaCtrl', function($scope, $state, $ionicPopup, $ionicModal, Factura, MyService) {
     
     $scope.formData = {};
 
-    console.log(MyService.ticket_consulta_manual);
+    $scope.ticket_consulta_manual = MyService.ticket_consulta_manual;
+    console.log($scope.ticket_consulta_manual);
+
+    $ionicModal.fromTemplateUrl('templates/modal-img.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+        }).then(function(modal) {
+            $scope.modal = modal;
+            $scope.modalDragStart = { active: true, value: 0 }
+    })
+
+    $scope.openModal = function() {
+        $scope.modal.show()
+    }
+
+    $scope.closeModal = function() {
+        return $scope.modal.hide();
+    };
 
     $scope.siguiente = function(formData) {
 

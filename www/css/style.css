@@ -291,5 +291,18 @@
     height: 110px;
 }
 .center-text{
-  text-align: center;
+    text-align: center;
+}
+
+.code-img-ticket{
+    text-align: center;
+    padding-top: 10px;
+    padding-right: 40px;
+    padding-left: 40px;
+    padding-bottom: 10px;
+}
+.code-img-ticket img{
+    width: 100%;
+    height: 100px;
+    padding: 10px;
 }

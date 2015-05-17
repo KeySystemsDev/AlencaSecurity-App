@@ -1,0 +1,20 @@
+<div class="modal" id="modal">
+    <ion-header-bar class="bar bar-stable" on-drag="dragDown($event)" on-release="resetPosition($event)">
+        <button class="button button-clear button-primary ion-close-round" ng-click="closeModal()"></button>
+        <h1 class="title color-back">Ticket</h1>
+        
+    </ion-header-bar>
+    <ion-content>
+        <div class="list card">
+
+            <a class="item item-icon-left" href="#">
+                <i class="icon ion-pound"></i>
+                   Ticket : {{ ticket_consulta_manual[0].Codigo }}
+            </a>
+
+            <div class="item item-image">
+                <img ng-src="{{ ticket_consulta_manual[0].Foto }}">
+            </div>
+        </div>
+    </ion-content>
+</div>
