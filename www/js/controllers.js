@@ -107,7 +107,6 @@ angular.module('starter.controllers', [])
     $scope.formData = {};
 
     $scope.ticket_consulta_manual = MyService.ticket_consulta_manual;
-    console.log($scope.ticket_consulta_manual);
 
     $ionicModal.fromTemplateUrl('templates/modal-img.html', {
         scope: $scope,
@@ -145,7 +144,7 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller('ResuladosManualCtrl', function($scope, $state, $ionicHistory, MyService, Asociar) {
+.controller('ResuladosManualCtrl', function($scope, $state, $ionicPopup, $ionicHistory, MyService, Asociar) {
     
     $scope.ticket_consulta = MyService.ticket_consulta_manual;
 
@@ -153,16 +152,23 @@ angular.module('starter.controllers', [])
 
     $scope.asociar = function( consulta_factura , consulta_ticket) {      
 
-        $scope.asociar = Asociar.query({factura: consulta_factura, ticket: consulta_ticket});
+        Asociar.query({factura: consulta_factura, ticket: consulta_ticket}).$promise.then(function(data) {
+            
+            $ionicPopup.alert({ title:    'Mensaje',
+                                template: 'La Asociación fue realizada correctamente.'});
 
-        alert("Información Enviada: \n" + "\n" +
-              "Número Ticket: " + consulta_ticket + "\n" + "\n" +
-              "Número Factura: " + consulta_factura + "\n");
+            $ionicHistory.nextViewOptions({
+                disableBack: true
+            });
 
-        $ionicHistory.nextViewOptions({
-            disableBack: true
-        });
-
-        $state.go('app.consultaticket');
+            $state.go('app.consultaticket');
+            
+        }, function(error) {
+            // error hand
+            console.log(error);
+            $ionicPopup.alert({ title:    'Mensaje de Error',
+                                template: 'Ocurrio un Error al Asociar porfavor vuelva a intentarlo.'});
+        });        
     }
+
 });
