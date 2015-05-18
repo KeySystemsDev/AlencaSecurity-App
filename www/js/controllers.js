@@ -91,28 +91,49 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('ResuladosCtrl', function($scope, $state, $http, $ionicHistory, MyService, Asociar, Ticket, Factura) {
-    $scope.factura = MyService.factura;
-    $scope.ticket = MyService.ticket;
+.controller('ResuladosCtrl', function($scope, $state, $ionicHistory, $ionicModal, $ionicPopup, MyService, Asociar, Ticket, Factura) {
 
-    $scope.ticket_consulta = Ticket.get({codigo: MyService.ticket.text});
+    $scope.factura_scanner = MyService.factura;
+    $scope.ticket_scanner = MyService.ticket;
 
-    $scope.factura_consulta = Factura.get({codigo: MyService.factura.text});
+    $scope.ticket = Ticket.get({codigo: MyService.ticket.text});
+
+    $scope.factura = Factura.get({codigo: MyService.factura.text});
+
+    $ionicModal.fromTemplateUrl('templates/modal-img.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+        }).then(function(modal) {
+            $scope.modal = modal;
+            $scope.modalDragStart = { active: true, value: 0 }
+    })
+
+    $scope.openModal = function() {
+        $scope.modal.show()
+    }
+
+    $scope.closeModal = function() {
+        return $scope.modal.hide();
+    };
 
     $scope.asociar = function() {      
-        $scope.asociar = Asociar.query(
-                        {  factura: MyService.factura.text,
-                           ticket: MyService.ticket.text
-                        });
-
-        alert("Información Enviada: \n" + "\n" +
-              "Número Ticket: " + MyService.ticket.text + "\n" + "\n" +
-              "Número Factura: " + MyService.factura.text + "\n");
-
-        $ionicHistory.nextViewOptions({
-            disableBack: true
-        });
-        $state.go('app.consultaticket');
+        Asociar.query({factura: MyService.factura.text, ticket: MyService.ticket.text}).$promise.then(function(data) {
+            
+            $ionicPopup.alert({ title:    'Mensaje de Exito',
+                                template: 'Factura: ' + MyService.ticket.text + ' y Ticket: ' + MyService.factura.text + ' asociados correctamente.'});
+            
+            $ionicHistory.nextViewOptions({
+                disableBack: true
+            });
+            
+            $state.go('app.consultaticket');
+            
+        }, function(error) {
+            // error hand
+            console.log(error);
+            $ionicPopup.alert({ title:    'Mensaje de Error',
+                                template: 'Ocurrio un error al sociar porfavor vuelva a intentarlo.'});
+        });        
     }
 })
 
@@ -129,7 +150,6 @@ angular.module('starter.controllers', [])
             $state.go('app.consultamanualfactura');
 
             $scope.formData = {};
-            console.log(data);
     
         }, function(error) {
             // error hand
@@ -210,7 +230,7 @@ angular.module('starter.controllers', [])
         Asociar.query({factura: consulta_factura, ticket: consulta_ticket}).$promise.then(function(data) {
             
             $ionicPopup.alert({ title:    'Mensaje',
-                                template: 'La Asociación fue realizada correctamente.'});
+                                template: 'La Asociación se realizo correctamente.'});
 
             $ionicHistory.nextViewOptions({
                 disableBack: true

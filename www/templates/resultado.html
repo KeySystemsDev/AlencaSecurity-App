@@ -1,42 +1,32 @@
 <ion-view view-title="Resultado">
   <ion-content>
 
-    <div class="card">
-        
-        <div class="item item-divider">
-            Ticket
-        </div>
-        
+    <div class="list list-inset">
+        <label class="item ion-pricetag item-divider">
+            Ticket <i class="ion-pound"> {{ticket[0].Codigo}}</i>
+        </label>
+        <label class="item" ng-click="openModal()">
+            <div class="code-img-ticket">
+                <img ng-src="{{ ticket[0].Foto }}">
+            </div>
+        </label>
         <div class="item item-text-wrap">
-            Información: {{ticket.text}}
+            Formato: {{ticket_scanner.format}}
         </div>
-
-        <div class="item item-text-wrap">
-            Formato: {{ticket.format}}
-        </div>
-
-        <div class="item item-text-wrap">
-            Array: {{ticket_consulta}}
-        </div>
-  
     </div>
 
     <div class="card">
         
-        <div class="item item-divider">
+        <div class="item ion-pricetag item-divider">
             Factura
         </div>
         
         <div class="item item-text-wrap">
-            Información: {{factura.text}}
+            Información: {{factura_scanner.text}}
         </div>
 
         <div class="item item-text-wrap">
-            Formato: {{factura.format}}
-        </div>
-
-        <div class="item item-text-wrap">
-            Array: {{factura_consulta}}
+            Formato: {{factura_scanner.format}}
         </div>
   
     </div>
