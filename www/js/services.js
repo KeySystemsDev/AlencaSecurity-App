@@ -7,7 +7,7 @@ angular.module('starter.services', [])
 })
 
 .factory("Ticket", function ($resource) {
-    return $resource("http://www.keypanelservices.com/qr/ticket.php", //la url donde queremos consumir
+    return $resource(localStorage.getItem('url') + "ticket.php", //la url donde queremos consumir
         {}, //aquí podemos pasar variables que queramos pasar a la consulta
         //a la función get le decimos el método, y, si es un array lo que devuelve
         //ponemos isArray en true
@@ -16,7 +16,7 @@ angular.module('starter.services', [])
 })
 
 .factory("Factura", function ($resource) {
-    return $resource("http://www.keypanelservices.com/qr/factura.php", //la url donde queremos consumir
+    return $resource(localStorage.getItem('url') + "factura.php", //la url donde queremos consumir
         {}, //aquí podemos pasar variables que queramos pasar a la consulta
         //a la función get le decimos el método, y, si es un array lo que devuelve
         //ponemos isArray en true
@@ -25,7 +25,7 @@ angular.module('starter.services', [])
 })
 
 .factory("Asociar", function ($resource) {
-    return $resource("http://www.keypanelservices.com/qr/asociar.php", //la url donde queremos consumir
+    return $resource(localStorage.getItem('url') + "asociar.php", //la url donde queremos consumir
         {}, //aquí podemos pasar variables que queramos pasar a la consulta
         //a la función get le decimos el método, y, si es un array lo que devuelve
         //ponemos isArray en true

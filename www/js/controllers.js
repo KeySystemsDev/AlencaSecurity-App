@@ -4,11 +4,34 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('ConfiguracionCtrl', function($scope) {
+.controller('ConfiguracionCtrl', function($scope, $state, $ionicHistory, $ionicPopup) {
     $scope.formData = {};
 
+    if (localStorage.getItem('url') != null) {
+        localStorage.getItem('url');
+    }else{
+        localStorage.setItem('url', 'http://www.keypanelservices.com/qr/');
+    }
+
+    $scope.url = localStorage.getItem('url');
+
     $scope.aceptar = function(formData){
-        console.log(formData);
+        $ionicPopup.confirm({
+            title: 'Mensaje de Confirmación',
+            template: '¿ Está seguro que desea cambiar la url ?'
+        }).then(function(res) {
+            if(res) {
+                localStorage.setItem('url', formData.url);
+                $state.go('app.consultaticket');
+                $ionicHistory.nextViewOptions({
+                        disableBack: true
+                });
+                document.location.reload();
+            } else {
+                console.log('Cancelado');
+                $scope.formData = {};
+            }
+        });   
     }
 })
 
