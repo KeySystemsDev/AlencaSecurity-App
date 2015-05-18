@@ -4,6 +4,10 @@ angular.module('starter.controllers', [])
 
 })
 
+.controller('ConfiguracionCtrl', function() {
+
+})
+
 .controller('ConsultaTicketCtrl', function($scope, $state, $cordovaBarcodeScanner,$ionicPopup, Ticket, MyService) {
 
     $scope.scanBarcode = function() {
