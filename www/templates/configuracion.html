@@ -1,5 +1,37 @@
 <ion-view view-title="Configuración">
   <ion-content>
-    <h1>Configuración</h1>
+    
+    <div class="list list-inset">
+		<label class="item ion-link item-divider">
+			Dirección url de actual.
+		</label>
+		<label class="item">
+			url
+		</label>
+	</div>
+
+    <form name="formulario" id="formulario">
+		<div class="list list-inset center-text">
+  			<label class="item item-divider">
+    			Ingrese la url correspondiente
+  			</label>
+		</div>
+
+    	<div class="list list-inset">
+  			<label class="item ion-link item-divider">
+    			url
+  			</label>
+  			<label class="item item-input">
+    			<input type="text" placeholder="http://url/url/" id="id_url" name="number_url" ng-model="formData.url" required>
+  			</label>
+		</div>
+
+        <div class="button-enviar">
+            <button class="button button-balanced" type="submit" value="Siguiente" ng-disabled="formulario.$invalid" ng-click="aceptar(formData)">
+                Aceptar
+            </button>
+        </div>
+    </form>
+  
   </ion-content>
 </ion-view>

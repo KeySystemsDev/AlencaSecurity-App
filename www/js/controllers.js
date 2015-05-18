@@ -4,8 +4,12 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('ConfiguracionCtrl', function() {
+.controller('ConfiguracionCtrl', function($scope) {
+    $scope.formData = {};
 
+    $scope.aceptar = function(formData){
+        console.log(formData);
+    }
 })
 
 .controller('ConsultaTicketCtrl', function($scope, $state, $cordovaBarcodeScanner,$ionicPopup, Ticket, MyService) {
