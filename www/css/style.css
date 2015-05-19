@@ -3,13 +3,13 @@
 .button-ticket{
   position: relative;
   left: 10%;
-  top: 100px;
+  top: 30px;
 }
 
 .button-factura{
   position: relative;
   left: 10%;
-  top: 100px;
+  top: 30px;
 }
 
 .trans {
@@ -207,7 +207,7 @@
     position: absolute;
 }
 .button-qr > img {
-    margin-top: 45px;
+    margin-top: 10px;
 }
 
 .content-app{
