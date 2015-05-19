@@ -7,12 +7,6 @@ angular.module('starter.controllers', [])
 .controller('ConfiguracionCtrl', function($scope, $state, $ionicHistory, $ionicPopup) {
     $scope.formData = {};
 
-    if (localStorage.getItem('url') != null) {
-        localStorage.getItem('url');
-    }else{
-        localStorage.setItem('url', 'http://www.keypanelservices.com/qr/');
-    }
-
     $scope.url = localStorage.getItem('url');
 
     $scope.aceptar = function(formData){
@@ -36,6 +30,12 @@ angular.module('starter.controllers', [])
 })
 
 .controller('ConsultaTicketCtrl', function($scope, $state, $cordovaBarcodeScanner,$ionicPopup, Ticket, MyService) {
+
+        if (localStorage.getItem('url') != null) {
+            localStorage.getItem('url');
+        }else{
+            localStorage.setItem('url', 'http://www.keypanelservices.com/qr/');
+        }
 
     $scope.scanBarcode = function() {
         $cordovaBarcodeScanner.scan().then(function(result) {
@@ -174,7 +174,7 @@ angular.module('starter.controllers', [])
 
     $scope.siguiente = function(formData) {
 
-        MyService.ticket_consulta_manual = Ticket.get({codigo: formData.number_ticket});      
+        MyService.ticket_consulta_manual = Ticket.get({codigo: formData.number_ticket});
 
         Ticket.get({codigo: formData.number_ticket}).$promise.then(function(data) {
             
