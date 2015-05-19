@@ -295,6 +295,7 @@
 .icon-side-menu{
     width: 110px;
     height: 110px;
+    padding: 10px;
 }
 .center-text{
     text-align: center;
