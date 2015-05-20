@@ -31,16 +31,6 @@ angular.module('starter.controllers', [])
 
 .controller('ConsultaTicketCtrl', function($scope, $state, $cordovaBarcodeScanner,$ionicPopup, Ticket, MyService) {
 
-        $scope.init = function() {
-            console.log("prueba. iniciando");
-            if (localStorage.getItem('url') != null) {
-                localStorage.getItem('url');
-            }else{
-                localStorage.setItem('url', 'http://www.keypanelservices.com/qr/');
-            }
-        }
-
-
     $scope.scanBarcode = function() {
         $cordovaBarcodeScanner.scan().then(function(result) {
             
