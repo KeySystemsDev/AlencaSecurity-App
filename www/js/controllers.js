@@ -31,6 +31,46 @@ angular.module('starter.controllers', [])
 
 .controller('ConsultaTicketCtrl', function($scope, $state, $cordovaBarcodeScanner,$ionicPopup, Ticket, MyService) {
 
+    if (localStorage.getItem('url') != null) {
+        localStorage.getItem('url');
+    }else{
+        
+        $scope.showConfirm = function() {
+            $scope.data = {};
+            var myPopup = $ionicPopup.show({
+                template: '<input type="text" ng-model="data.url">',
+                title: 'Configuración URL',
+                subTitle: 'Ingrese la URL correspondiente.',
+                scope: $scope,
+                buttons: [
+                    { text: 'Cancel' },
+                        {
+                            text: '<b>Guardar</b>',
+                            type: 'button-positive',
+                        
+                            onTap: function() {
+                                if (!$scope.data.url) {
+                                console.log('cancel');
+                                console.log($scope.data.url);
+                            } else {
+                                console.log('guardar')
+                                console.log($scope.data.url);
+                                localStorage.setItem('url', $scope.data.url);
+                                document.location.reload();
+                                return $scope.data.url;
+                                }
+                            }
+                        }
+                    ]
+          });
+ 
+         };
+
+        $scope.showConfirm();
+        
+ }
+    
+
     $scope.scanBarcode = function() {
         $cordovaBarcodeScanner.scan().then(function(result) {
             
