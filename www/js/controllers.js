@@ -62,15 +62,13 @@ angular.module('starter.controllers', [])
                             }
                         }
                     ]
-          });
+            });
  
-         };
+        };
 
-        $scope.showConfirm();
-        
- }
+        $scope.showConfirm();    
+    }
     
-
     $scope.scanBarcode = function() {
         $cordovaBarcodeScanner.scan().then(function(result) {
             
