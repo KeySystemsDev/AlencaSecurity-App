@@ -207,9 +207,10 @@ angular.module('starter.controllers', [])
     $scope.siguiente = function(formData) {
 
         $ionicLoading.show({
+            template: '<ion-spinner icon="android"/>',
             content: 'Loading Data',
             animation: 'fade-in',
-            showBackdrop: false,
+            showBackdrop: true,
             maxWidth: 200,
             showDelay: 500
         });
