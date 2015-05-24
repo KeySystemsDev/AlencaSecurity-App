@@ -200,27 +200,42 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller('ConsultaManualTicketCtrl', function($scope, $state, $ionicPopup, Ticket, MyService) {
+.controller('ConsultaManualTicketCtrl', function($scope, $state, $ionicPopup, $ionicLoading, $timeout, Ticket, MyService) {
     
     $scope.formData = {};
 
     $scope.siguiente = function(formData) {
 
-        MyService.ticket_consulta_manual = Ticket.get({codigo: formData.number_ticket});
-
-        Ticket.get({codigo: formData.number_ticket}).$promise.then(function(data) {
-            
-            $state.go('app.consultamanualfactura');
-
-            $scope.formData = {};
-    
-        }, function(error) {
-            // error hand
-            console.log(error);
-            $ionicPopup.alert({ title:    'Mensaje de Error',
-                                template: 'Existe un Error en el Ticket porfavor verifique el Número.'});
+        $ionicLoading.show({
+            content: 'Loading Data',
+            animation: 'fade-in',
+            showBackdrop: false,
+            maxWidth: 200,
+            showDelay: 500
         });
 
+        $timeout(function () {
+            
+            MyService.ticket_consulta_manual = Ticket.get({codigo: formData.number_ticket});
+
+            Ticket.get({codigo: formData.number_ticket}).$promise.then(function(data) {
+
+                $ionicLoading.hide();
+                
+                $state.go('app.consultamanualfactura');
+
+                $scope.formData = {};
+      
+    
+            }, function(error) {
+                // error hand
+                $ionicLoading.hide();
+                console.log(error);
+                $ionicPopup.alert({ title:    'Mensaje de Error',
+                                    template: 'Existe un Error en el Ticket porfavor verifique el Número.'});
+            });
+
+        },2500);
     }
 })
 
@@ -251,7 +266,7 @@ angular.module('starter.controllers', [])
         MyService.factura_consulta_manual = Factura.get({codigo: formData.number_factura});        
 
         Factura.get({codigo: formData.number_factura}).$promise.then(function(data) {
-            
+
             $state.go('app.resultadomanual');
 
             $scope.formData = {};
