@@ -103,6 +103,8 @@ angular.module('starter.controllers', [])
 
 .controller('ConsultaFacturaCtrl', function($scope, $state, $cordovaBarcodeScanner, $ionicPopup, $ionicModal, Ticket, Factura, MyService) {
     
+    $scope.url = localStorage.getItem('url');
+
     $scope.ticket = Ticket.get({codigo: MyService.ticket.text});
 
     $ionicModal.fromTemplateUrl('templates/modal-img.html', {
@@ -156,6 +158,8 @@ angular.module('starter.controllers', [])
 
 .controller('ResuladosCtrl', function($scope, $state, $ionicHistory, $ionicModal, $ionicPopup, MyService, Asociar, Ticket, Factura) {
 
+    $scope.url = localStorage.getItem('url');
+
     $scope.factura_scanner = MyService.factura;
     $scope.ticket_scanner = MyService.ticket;
 
@@ -206,22 +210,22 @@ angular.module('starter.controllers', [])
 
     $scope.siguiente = function(formData) {
 
-        $ionicLoading.show({
+        /*$ionicLoading.show({
             template: '<ion-spinner icon="android"/>',
             content: 'Loading Data',
             animation: 'fade-in',
             showBackdrop: true,
             maxWidth: 200,
             showDelay: 500
-        });
+        });*/
 
-        $timeout(function () {
+        //$timeout(function () {
             
             MyService.ticket_consulta_manual = Ticket.get({codigo: formData.number_ticket});
 
             Ticket.get({codigo: formData.number_ticket}).$promise.then(function(data) {
-
-                $ionicLoading.hide();
+                console.log(data);
+                //$ionicLoading.hide();
                 
                 $state.go('app.consultamanualfactura');
 
@@ -236,12 +240,14 @@ angular.module('starter.controllers', [])
                                     template: 'Existe un Error en el Ticket porfavor verifique el Número.'});
             });
 
-        },2500);
+        //},2500);
     }
 })
 
 .controller('ConsultaManualFacturaCtrl', function($scope, $state, $ionicPopup, $ionicModal, Factura, MyService) {
     
+    $scope.url = localStorage.getItem('url');
+
     $scope.formData = {};
 
     $scope.ticket_consulta_manual = MyService.ticket_consulta_manual;
@@ -284,6 +290,8 @@ angular.module('starter.controllers', [])
 
 .controller('ResuladosManualCtrl', function($scope, $state, $ionicPopup, $ionicHistory, $ionicModal, MyService, Asociar) {
     
+    $scope.url = localStorage.getItem('url');
+
     $scope.ticket_consulta_manual = MyService.ticket_consulta_manual;
 
     $scope.factura_consulta_manual = MyService.factura_consulta_manual;
