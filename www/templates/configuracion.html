@@ -3,12 +3,21 @@
     
     <div class="list list-inset">
 		<label class="item ion-link item-divider">
-			Dirección de url actual.
+			Dirección de url actual de Archivos.
 		</label>
 		<label class="item">
 			{{url}}
 		</label>
 	</div>
+
+    <div class="list list-inset">
+        <label class="item ion-link item-divider">
+            Dirección de url actual de Fotos.
+        </label>
+        <label class="item">
+            {{url_fotos}}
+        </label>
+    </div>
 
     <form name="formulario" id="formulario">
 		<div class="list list-inset center-text">
@@ -19,12 +28,22 @@
 
     	<div class="list list-inset">
   			<label class="item ion-link item-divider">
-    			url
+    			url Archivos
   			</label>
   			<label class="item item-input">
     			<input type="text" placeholder="http://url/qr/" id="id_url" name="number_url" ng-model="formData.url" required>
   			</label>
+
 		</div>
+        
+        <div class="list list-inset">
+            <label class="item ion-link item-divider">
+                url Fotos
+            </label>
+            <label class="item item-input">
+                <input type="text" placeholder="http://url/fotos/" id="id_url_fotos" name="number_url_fotos" ng-model="formData.url_fotos" required>
+            </label>
+        </div>
 
         <div class="button-enviar">
             <button class="button button-balanced" type="submit" value="Siguiente" ng-disabled="formulario.$invalid" ng-click="aceptar(formData)">

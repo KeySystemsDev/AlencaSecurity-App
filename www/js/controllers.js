@@ -9,6 +9,8 @@ angular.module('starter.controllers', [])
 
     $scope.url = localStorage.getItem('url');
 
+    $scope.url_fotos = localStorage.getItem('url_fotos');
+
     $scope.aceptar = function(formData){
         $ionicPopup.confirm({
             title: 'Mensaje de Confirmación',
@@ -16,6 +18,7 @@ angular.module('starter.controllers', [])
         }).then(function(res) {
             if(res) {
                 localStorage.setItem('url', formData.url);
+                localStorage.setItem('url_fotos', formData.url_fotos);
                 $state.go('app.consultaticket');
                 $ionicHistory.nextViewOptions({
                         disableBack: true
@@ -38,7 +41,7 @@ angular.module('starter.controllers', [])
         $scope.showConfirm = function() {
             $scope.data = {};
             var myPopup = $ionicPopup.show({
-                template: '<input type="text" ng-model="data.url">',
+                template: '<center>URL Archivo</center><input type="text" ng-model="data.url"><br><center>URL Fotos</center><input type="text" ng-model="data.url_fotos">',
                 title: 'Configuración URL',
                 subTitle: 'Ingrese la URL correspondiente.',
                 scope: $scope,
@@ -56,6 +59,7 @@ angular.module('starter.controllers', [])
                                 console.log('guardar')
                                 console.log($scope.data.url);
                                 localStorage.setItem('url', $scope.data.url);
+                                localStorage.setItem('url_fotos', $scope.data.url_fotos);
                                 document.location.reload();
                                 return $scope.data.url;
                                 }
@@ -104,6 +108,8 @@ angular.module('starter.controllers', [])
 .controller('ConsultaFacturaCtrl', function($scope, $state, $cordovaBarcodeScanner, $ionicPopup, $ionicModal, Ticket, Factura, MyService) {
     
     $scope.url = localStorage.getItem('url');
+
+    $scope.url_fotos = localStorage.getItem('url_fotos');
 
     $scope.ticket = Ticket.get({codigo: MyService.ticket.text});
 
@@ -160,6 +166,8 @@ angular.module('starter.controllers', [])
 
     $scope.url = localStorage.getItem('url');
 
+    $scope.url_fotos = localStorage.getItem('url_fotos');
+
     $scope.factura_scanner = MyService.factura;
     $scope.ticket_scanner = MyService.ticket;
 
@@ -204,9 +212,11 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller('ConsultaManualTicketCtrl', function($scope, $state, $ionicPopup, $ionicLoading, $timeout, Ticket, MyService) {
+.controller('ConsultaManualTicketCtrl', function($scope, $rootScope, $state, $ionicPopup, $ionicLoading, $timeout, Ticket) {
     
     $scope.formData = {};
+
+   
 
     $scope.siguiente = function(formData) {
 
@@ -221,10 +231,10 @@ angular.module('starter.controllers', [])
 
         //$timeout(function () {
             
-            MyService.ticket_consulta_manual = Ticket.get({codigo: formData.number_ticket});
+            $rootScope.ticket_consulta_manual = Ticket.get({codigo: formData.number_ticket});
 
             Ticket.get({codigo: formData.number_ticket}).$promise.then(function(data) {
-                console.log(data);
+                
                 //$ionicLoading.hide();
                 
                 $state.go('app.consultamanualfactura');
@@ -244,13 +254,13 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller('ConsultaManualFacturaCtrl', function($scope, $state, $ionicPopup, $ionicModal, Factura, MyService) {
+.controller('ConsultaManualFacturaCtrl', function($scope, $rootScope,$state, $ionicPopup, $ionicModal, Factura) {
     
     $scope.url = localStorage.getItem('url');
 
-    $scope.formData = {};
+    $scope.url_fotos = localStorage.getItem('url_fotos');
 
-    $scope.ticket_consulta_manual = MyService.ticket_consulta_manual;
+    $scope.formData = {};
 
     $ionicModal.fromTemplateUrl('templates/modal-img-manual.html', {
         scope: $scope,
@@ -270,7 +280,7 @@ angular.module('starter.controllers', [])
 
     $scope.siguiente = function(formData) {
 
-        MyService.factura_consulta_manual = Factura.get({codigo: formData.number_factura});        
+        $rootScope.factura_consulta_manual = Factura.get({codigo: formData.number_factura});        
 
         Factura.get({codigo: formData.number_factura}).$promise.then(function(data) {
 
@@ -288,13 +298,11 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller('ResuladosManualCtrl', function($scope, $state, $ionicPopup, $ionicHistory, $ionicModal, MyService, Asociar) {
+.controller('ResuladosManualCtrl', function($scope, $rootScope, $state, $ionicPopup, $ionicHistory, $ionicModal, Asociar) {
     
     $scope.url = localStorage.getItem('url');
 
-    $scope.ticket_consulta_manual = MyService.ticket_consulta_manual;
-
-    $scope.factura_consulta_manual = MyService.factura_consulta_manual;
+    $scope.url_fotos = localStorage.getItem('url_fotos');
 
     $ionicModal.fromTemplateUrl('templates/modal-img-manual.html', {
         scope: $scope,
@@ -323,7 +331,7 @@ angular.module('starter.controllers', [])
                 disableBack: true
             });
 
-            $state.go('app.consultaticket');
+            $state.go('app.consultaticket');            
             
         }, function(error) {
             // error hand
