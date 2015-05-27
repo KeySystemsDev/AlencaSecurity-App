@@ -32,7 +32,7 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller('ConsultaTicketCtrl', function($scope, $state, $cordovaBarcodeScanner,$ionicPopup, Ticket, MyService) {
+.controller('ConsultaTicketCtrl', function($scope, $rootScope, $state, $cordovaBarcodeScanner,$ionicPopup, Ticket) {
 
     if (localStorage.getItem('url') != null) {
         localStorage.getItem('url');
@@ -82,6 +82,8 @@ angular.module('starter.controllers', [])
             
                     $state.go('app.consultafactura');
 
+                    $rootScope.ticket = Ticket.get({codigo: result.text});
+
                 }, function(error) {
                     // error hand
                     console.log(error);
@@ -95,7 +97,7 @@ angular.module('starter.controllers', [])
                       "Status Cancel: " + result.cancelled);
             }
 
-            MyService.ticket = result;
+            $rootScope.ticket_scanner = result;
 
             console.log("Barcode Format -> " + result.format);
             console.log("Cancelled -> " + result.cancelled);
@@ -105,13 +107,11 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('ConsultaFacturaCtrl', function($scope, $state, $cordovaBarcodeScanner, $ionicPopup, $ionicModal, Ticket, Factura, MyService) {
+.controller('ConsultaFacturaCtrl', function($scope, $rootScope, $state, $cordovaBarcodeScanner, $ionicPopup, $ionicModal, Ticket, Factura) {
     
     $scope.url = localStorage.getItem('url');
 
     $scope.url_fotos = localStorage.getItem('url_fotos');
-
-    $scope.ticket = Ticket.get({codigo: MyService.ticket.text});
 
     $ionicModal.fromTemplateUrl('templates/modal-img.html', {
         scope: $scope,
@@ -138,6 +138,8 @@ angular.module('starter.controllers', [])
                 Factura.get({codigo: result.text}).$promise.then(function(data) {
 
                     $state.go('app.resultado');
+
+                    $rootScope.factura = Factura.get({codigo: result.text});
                     
                 }, function(error) {
                     // error hand
@@ -152,7 +154,7 @@ angular.module('starter.controllers', [])
                       "Status Cancel: " + result.cancelled);
             }
 
-            MyService.factura = result;
+            $rootScope.factura_scanner = result;
 
             console.log("Barcode Format -> " + result.format);
             console.log("Cancelled -> " + result.cancelled);
@@ -162,18 +164,11 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('ResuladosCtrl', function($scope, $state, $ionicHistory, $ionicModal, $ionicPopup, MyService, Asociar, Ticket, Factura) {
+.controller('ResuladosCtrl', function($scope, $rootScope, $state, $ionicHistory, $ionicModal, $ionicPopup, Asociar, Ticket, Factura) {
 
     $scope.url = localStorage.getItem('url');
 
     $scope.url_fotos = localStorage.getItem('url_fotos');
-
-    $scope.factura_scanner = MyService.factura;
-    $scope.ticket_scanner = MyService.ticket;
-
-    $scope.ticket = Ticket.get({codigo: MyService.ticket.text});
-
-    $scope.factura = Factura.get({codigo: MyService.factura.text});
 
     $ionicModal.fromTemplateUrl('templates/modal-img.html', {
         scope: $scope,
@@ -192,10 +187,10 @@ angular.module('starter.controllers', [])
     };
 
     $scope.asociar = function() {      
-        Asociar.query({factura: MyService.factura.text, ticket: MyService.ticket.text}).$promise.then(function(data) {
+        Asociar.query({factura: $rootScope.factura_scanner.text, ticket: $rootScope.ticket_scanner.text}).$promise.then(function(data) {
             
             $ionicPopup.alert({ title:    'Mensaje de Exito',
-                                template: 'Factura: ' + MyService.ticket.text + ' y Ticket: ' + MyService.factura.text + ' asociados correctamente.'});
+                                template: 'Factura: ' + $rootScope.ticket_scanner.text + ' y Ticket: ' + $rootScope.factura_scanner.text + ' asociados correctamente.'});
             
             $ionicHistory.nextViewOptions({
                 disableBack: true
