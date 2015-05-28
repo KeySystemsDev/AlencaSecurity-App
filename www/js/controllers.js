@@ -229,14 +229,24 @@ angular.module('starter.controllers', [])
             $rootScope.ticket_consulta_manual = Ticket.get({codigo: formData.number_ticket});
 
             Ticket.get({codigo: formData.number_ticket}).$promise.then(function(data) {
+
+                if (data[0].VP == 0) {
+                    
+                    $scope.formData = {};
+
+                    $ionicPopup.alert({ title:    'Mensaje de Error',
+                                        template: 'Error Ticket es valet Parking'});
+                }
+
+                else {
+                    
+                    $state.go('app.consultamanualfactura');
+
+                    $scope.formData = {};
+                }
                 
                 //$ionicLoading.hide();
                 
-                $state.go('app.consultamanualfactura');
-
-                $scope.formData = {};
-      
-    
             }, function(error) {
                 // error hand
                 $ionicLoading.hide();
@@ -279,9 +289,21 @@ angular.module('starter.controllers', [])
 
         Factura.get({codigo: formData.number_factura}).$promise.then(function(data) {
 
-            $state.go('app.resultadomanual');
+            if (data[0].Cod_Bar == 3000){
+                
+                $scope.formData = {};
 
-            $scope.formData = {};
+                $ionicPopup.alert({ title:    'Mensaje de Error',
+                                    template: 'Error La Factura no es Lote'}); 
+            }
+
+            else {
+
+                $state.go('app.resultadomanual');
+
+                $scope.formData = {};   
+            }
+
             
         }, function(error) {
             // error hand
