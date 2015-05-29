@@ -26,13 +26,13 @@
         </div>
 
         <div class="item item-text-wrap ion-pound">
-            Número de Factura: {{factura_consulta_manual[0].Ticket}}
+            Número de Factura: {{factura_consulta_manual[0].Cod_Bar}}
         </div>
   
     </div>
     
     <div class="button-enviar">
-    	<button class="button button-assertive" ng-click="asociar(factura_consulta_manual[0].Ticket, ticket_consulta_manual[0].Codigo)">
+    	<button class="button button-assertive" ng-click="asociar(factura_consulta_manual[0].Cod_Bar, ticket_consulta_manual[0].Codigo)">
     		Asociar
     	</button>
     </div>
