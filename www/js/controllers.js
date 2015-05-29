@@ -80,7 +80,7 @@ angular.module('starter.controllers', [])
                 
                 Ticket.get({codigo: result.text}).$promise.then(function(data) {
             
-                    if (data[0].VP == 0) {
+                    if (data[0].VP != 0) {
                     
                         $ionicPopup.alert({ title:    'Mensaje de Error',
                                             template: 'Error Ticket es valet Parking'});
@@ -146,7 +146,7 @@ angular.module('starter.controllers', [])
                 
                 Factura.get({codigo: result.text}).$promise.then(function(data) {
 
-                    if (data[0].Cod_Bar == 3000){
+                    if (data[0].Cod_Bar != 3000){
                 
                         $ionicPopup.alert({ title:    'Mensaje de Error',
                                             template: 'Error La Factura no es Lote'}); 
@@ -248,7 +248,7 @@ angular.module('starter.controllers', [])
 
             Ticket.get({codigo: formData.number_ticket}).$promise.then(function(data) {
 
-                if (data[0].VP == 0) {
+                if (data[0].VP != 0) {
                     
                     $scope.formData = {};
 
@@ -307,7 +307,7 @@ angular.module('starter.controllers', [])
 
         Factura.get({codigo: formData.number_factura}).$promise.then(function(data) {
 
-            if (data[0].Cod_Bar == 3000){
+            if (data[0].Cod_Bar != 3000){
                 
                 $scope.formData = {};
 
